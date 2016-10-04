@@ -1,4 +1,4 @@
-### Original Project that much of this was copied from.
+### Original Project that much of this was cloned from.
 
 http://www.dockerwordpress.com/docker/upgrading-wordpress-docker
 
