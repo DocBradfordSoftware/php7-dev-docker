@@ -20,26 +20,36 @@ RUN echo 'http://dl-4.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositor
     && apk --update add \
     php7-apcu \
     php7-bcmath \
+    php7-bz2 \
     php7-ctype \
     php7-curl \
     php7-dom \
+    php7-exif \
     php7-fpm \
     php7-gd \
     php7-iconv \
     php7-intl \
     php7-json \
+    php7-ldap \
     php7-mbstring \
     php7-mcrypt \
     php7-mysqli \
     php7-opcache \
     php7-openssl \
+    php7-pdo \
     php7-posix \
     php7-phar \
     php7-redis \
     php7-session \
+    php7-xsl \
     php7-xml \
     php7-xmlreader \
     php7-zlib \
+    #php7-date \
+    #php7-libxml \
+    #php7-dbg \
+    #php7-pcre \
+    #php7-simplexml \
     && rm -rf /var/cache/apk/* \
     && rm -fr /tmp/* 
 
@@ -60,6 +70,11 @@ RUN set -xe \
     && sed -i -e 's/PHP -C -n -q/PHP -C -q/g' /usr/bin/pecl \
     && pecl install mongodb \
     && echo "extension=mongodb.so" > /etc/php7/conf.d/20_mongodb.ini \
+
+    && yes | pecl install xdebug \
+    && echo "zend_extension=$(find /usr/lib/php7/modules/ -name xdebug.so)" > /etc/php7/conf.d/xdebug.ini \
+    && echo "xdebug.remote_enable=on" >> /etc/php7/conf.d/xdebug.ini \
+    && echo "xdebug.remote_autostart=off" >> /etc/php7/conf.d/xdebug.ini \
 
     && cd / \
     && apk del ${BUILD_DEPS} \
