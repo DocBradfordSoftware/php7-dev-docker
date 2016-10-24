@@ -16,3 +16,27 @@ expects a /htdocs directory
 expects a /htdocs/index.php
 
 ## Not for production usage
+
+Example use
+
+```bash
+mkdir hello-php
+cd hello-php
+mkdir htdocs
+cd htdocs
+sudo echo "<?php
+echo \"hello php\";
+" > index.php
+cd ..
+```
+
+Dockerfile
+```docker
+FROM docbradfordsoftware/php7-dev:1.0
+MAINTAINER jkevlin<jkevlin@gmail.com>
+
+WORKDIR /
+COPY ./htdocs /DATA/htdocs
+
+CMD ["/run.sh"]
+```
