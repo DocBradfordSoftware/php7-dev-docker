@@ -30,9 +30,7 @@ cd htdocs
 
 sudo echo "<?php
 echo \"hello php\";
-" > index.php
-
-cd ..
+" > ./htdocs/index.php
 ```
 
 Dockerfile
@@ -53,7 +51,20 @@ docker build -t $DOCKERHUB_USER/hello-php:1.0 .
 docker run -p 49000:80 --rm --name hello-php $DOCKERHUB_USER/hello-php:1.0
 ```
 
+use docker-machine to find your local ip (on a MAC use localhost)
+usually it is locaed at 192.168.99.100
+```bash
+docker-machine ip
+```
+
+In a browser naviate to
+localhost:49000
+or
+192.168.99.100:49000
+
+### Stop the container
 In another terminal window
 ```bash
 docker stop hello-php
 ```
+
