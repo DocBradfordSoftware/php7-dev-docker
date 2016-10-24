@@ -21,12 +21,17 @@ Example use
 
 ```bash
 mkdir hello-php
+
 cd hello-php
+
 mkdir htdocs
+
 cd htdocs
+
 sudo echo "<?php
 echo \"hello php\";
 " > index.php
+
 cd ..
 ```
 
@@ -39,4 +44,16 @@ WORKDIR /
 COPY ./htdocs /DATA/htdocs
 
 CMD ["/run.sh"]
+```
+
+```bash
+DOCKERHUB_USER=<your-username>
+docker build -t $DOCKERHUB_USER/hello-php:1.0 .
+
+docker run -p 49000:80 --rm --name hello-php $DOCKERHUB_USER/hello-php:1.0
+```
+
+In another terminal window
+```bash
+docker stop hello-php
 ```
