@@ -26,8 +26,6 @@ cd hello-php
 
 mkdir htdocs
 
-cd htdocs
-
 sudo echo "<?php
 echo \"hello php\";
 " > ./htdocs/index.php
